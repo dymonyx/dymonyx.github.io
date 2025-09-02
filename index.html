@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8">
+<h4>agonek</h4>
+
+<p>n1·x + n2·y = n3</p>
+<p>n4·x + n5·y = n6</p>
+
+<input id="n1" type="number">
+<input id="n2" type="number">
+<input id="n3" type="number"><br>
+<input id="n4" type="number">
+<input id="n5" type="number">
+<input id="n6" type="number"><br>
+
+<button id="bt">Calculate</button>
+
+<p>x: <input id="result1"></p>
+<p>y: <input id="result2"></p>
+
+<script>
+  function num(id){ return parseInt(document.querySelector('#' + id).value); }
+
+  document.querySelector('#result1').readOnly = true;
+  document.querySelector('#result2').readOnly = true;
+
+  document.querySelector('#bt').onclick = function(){
+    var a=num('n1'), b=num('n2'), c=num('n3');
+    var d=num('n4'), e=num('n5'), f=num('n6');
+
+    var D  = a*e - b*d;
+    var Dx = c*e - b*f;
+    var Dy = a*f - c*d;
+
+    document.querySelector('#result1').value = String(Dx / D);
+    document.querySelector('#result2').value = String(Dy / D);
+  };
+</script>
+</html>
