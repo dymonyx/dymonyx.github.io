@@ -1,39 +1,127 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
-<meta charset="utf-8">
-<h4>agonek</h4>
+  <head>
+    <meta charset="utf-8">
+    <title>sk8 shop</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
 
-<p>n1·x + n2·y = n3</p>
-<p>n4·x + n5·y = n6</p>
+  <body>
+      <header>
+        <div class="container">
+          <h1>sk8 shop</h1>
+          <button id="openCart" class="checkout-btn">Оформить заказ</button>
+        </div>
+      </header>
 
-<input id="n1" type="number">
-<input id="n2" type="number">
-<input id="n3" type="number"><br>
-<input id="n4" type="number">
-<input id="n5" type="number">
-<input id="n6" type="number"><br>
+      <main>
+        <div class="container">
+          <h2 id="catalog-title">Каталог</h2>
+          <section class="catalog">
+            <article class="product">
+              <img src="img/deck-footwork-progress-mix-silver-ss25.png" alt="Дека">
+              <h3>Дека Footwork Progress Микс Серебро ss25</h3>
+              <p>Цена: 5290 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
 
-<button id="bt">Calculate</button>
+            <article class="product">
+              <img src="img/trucks-footwork-label-purple.png" alt="Комплект подвесок">
+              <h3>Комплект подвесок Footwork Label Purple/Raw</h3>
+              <p>Цена: 2590 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
 
-<p>x: <input id="result1"></p>
-<p>y: <input id="result2"></p>
+            <article class="product">
+              <img src="img/wheels-element-section.png" alt="Комплект колёс">
+              <h3>Комплект колес Element Section 52мм</h3>
+              <p>Цена: 3290 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
 
-<script>
-  function num(id){ return parseInt(document.querySelector('#' + id).value); }
+            <article class="product">
+              <img src="img/trucks-ace-af1.png" alt="Комплект подвесок">
+              <h3>Комплект подвесок Ace AF1 Limited Hollow Deedz 44</h3>
+              <p>Цена: 9250 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
 
-  document.querySelector('#result1').readOnly = true;
-  document.querySelector('#result2').readOnly = true;
+            <article class="product">
+              <img src="img/grip-tape-rip-n-dip-while-black.png" alt="Шкурка">
+              <h3>Шкурка для скейтборда Dip Grip SIDE CHECK BLACK</h3>
+              <p>Цена: 950 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
 
-  document.querySelector('#bt').onclick = function(){
-    var a=num('n1'), b=num('n2'), c=num('n3');
-    var d=num('n4'), e=num('n5'), f=num('n6');
+            <article class="product">
+              <img src="img/skate-element.png" alt="Скейт">
+              <h3>Скейтборд в сборе Element Section 7.75</h3>
+              <p>Цена: 11500 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
+            <article class="product">
+              <img src="img/deck-footwork-progress-mix-silver-ss25.png" alt="Дека">
+              <h3>Дека Footwork Progress Микс Серебро ss25</h3>
+              <p>Цена: 5290 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
 
-    var D  = a*e - b*d;
-    var Dx = c*e - b*f;
-    var Dy = a*f - c*d;
+            <article class="product">
+              <img src="img/trucks-footwork-label-purple.png" alt="Комплект подвесок">
+              <h3>Комплект подвесок Footwork Label Purple/Raw</h3>
+              <p>Цена: 2590 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
 
-    document.querySelector('#result1').value = String(Dx / D);
-    document.querySelector('#result2').value = String(Dy / D);
-  };
-</script>
+            <article class="product">
+              <img src="img/wheels-element-section.png" alt="Комплект колёс">
+              <h3>Комплект колес Element Section 52мм</h3>
+              <p>Цена: 3290 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
+
+            <article class="product">
+              <img src="img/trucks-ace-af1.png" alt="Комплект подвесок">
+              <h3>Комплект подвесок Ace AF1 Limited Hollow Deedz 44</h3>
+              <p>Цена: 9250 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
+
+            <article class="product">
+              <img src="img/grip-tape-rip-n-dip-while-black.png" alt="Шкурка">
+              <h3>Шкурка для скейтборда Dip Grip SIDE CHECK BLACK</h3>
+              <p>Цена: 950 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
+
+            <article class="product">
+              <img src="img/skate-element.png" alt="Скейт">
+              <h3>Скейтборд в сборе Element Section 7.75</h3>
+              <p>Цена: 11500 ₽</p>
+              <button type="button">Добавить в корзину</button>
+            </article>
+          </section>
+        </div>
+      </main>
+
+      <footer>
+        <p>© 2025 sk8 shop</p>
+      </footer>
+
+      <div id="cartModal" class="modal">
+        <div class="modal-content">
+          <span id="closeCart" class="close">&times;</span>
+          <h2>Оформление заказа</h2>
+          <form>
+            <input type="text" placeholder="Имя" required><br>
+            <input type="text" placeholder="Фамилия" required><br>
+            <input type="text" placeholder="Адрес доставки" required><br>
+            <input type="tel" placeholder="Телефон" required><br>
+            <button type="submit">Создать заказ</button>
+          </form>
+        </div>
+      </div>
+      <script src="script.js"></script>
+  </body>
 </html>
+
