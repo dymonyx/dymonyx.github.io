@@ -71,17 +71,21 @@ p {
 
 .product h3 {
   font-size: 1.1em;
-  margin: 10px 0;
+  margin-bottom: auto;
 }
 
 .product button {
-  margin-top: auto;
+  margin-top: 0;
   padding: 10px 15px;
   background: #000000;
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.product p {
+  margin: 20px 0 10px;
 }
 
 .product button:hover {
