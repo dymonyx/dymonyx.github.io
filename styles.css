@@ -85,7 +85,9 @@ p {
   background: #4c5055;
 }
 
-/* кнопка в шапке */
+button{
+  font-family: inherit;
+}
 .checkout-btn {
   margin-left: 20px;
   padding: 10px 15px;
