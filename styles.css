@@ -1,3 +1,7 @@
+html {
+  font-family: Helvetica, sans-serif;
+}
+
 header {
   position: fixed;
   top: 0; left: 0; width: 100%;
@@ -17,7 +21,6 @@ header .container {
 }
 
 body {
-  font-family: Helvetica, sans-serif;
   background: #f9f9f9;
 }
 
@@ -85,9 +88,6 @@ p {
   background: #4c5055;
 }
 
-button{
-  font-family: inherit;
-}
 .checkout-btn {
   margin-left: 20px;
   padding: 10px 15px;
