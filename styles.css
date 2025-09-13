@@ -167,6 +167,7 @@ h1, h2, p { text-align: center; }
 
 .cart-row input {
   width: 50px;
+  margin-top: 10px;
   text-align: center;
 }
 
@@ -210,20 +211,42 @@ h1, h2, p { text-align: center; }
     font-size: 2.0em;
   }
   .modal-content {
-    width: 90%;
-    padding: 20px;
+    width: 94%;
+    padding: 12px;
+    max-height:82vh;
+  }
+  .cart-row{
+    grid-template-columns: 90px 1fr 56px 80px auto;
+    gap: 6px;
+    align-items: center;
+    padding:10px 0;
+  }
+  .cart-row img{
+    width: 90px;
+    height: 90px;
   }
 }
 
-@media (max-width: 768px) and (min-width: 481px) {
+@media (max-width: 1300px) and (min-width: 481px) {
   .catalog {
     grid-template-columns: repeat(2, 1fr);
   }
   header h1 {
     font-size: 1.6em;
   }
-  .modal-content {
-    width: 80%;
-    padding: 20px;
+  .modal-content{
+    width: 94%;
+    padding: 12px;
+    max-height: 82vh;
+  }
+  .cart-row{
+    grid-template-columns: 140px 1fr 56px 90px auto;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .cart-row img{
+    width: 120px;
+    height: 120px;
   }
 }
