@@ -155,6 +155,9 @@ h1, h2, p { text-align: center; }
 
 .cart-row .price {
   text-align: center;
+}
+
+.cart-row .name {
   font-weight: 600;
 }
 
@@ -211,19 +214,52 @@ h1, h2, p { text-align: center; }
     font-size: 2.0em;
   }
   .modal-content {
-    width: 94%;
+    width: 80%;
     padding: 12px;
     max-height:82vh;
   }
-  .cart-row{
-    grid-template-columns: 90px 1fr 56px 80px auto;
-    gap: 6px;
+  .cart-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 8px 16px;
     align-items: center;
-    padding:10px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
   }
-  .cart-row img{
-    width: 90px;
-    height: 90px;
+
+  .cart-row img {
+    grid-column: 1;
+    grid-row: 1 / 5;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .cart-row .name {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cart-row .price {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .cart-row input {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 0;
+    justify-self: center;
+  }
+
+  .cart-row .remove {
+    grid-column: 2;
+    grid-row: 4;
+    justify-self: center;
   }
 }
 
@@ -231,22 +267,58 @@ h1, h2, p { text-align: center; }
   .catalog {
     grid-template-columns: repeat(2, 1fr);
   }
+
   header h1 {
     font-size: 1.6em;
   }
+
   .modal-content{
-    width: 94%;
+    width: 85%;
     padding: 12px;
     max-height: 82vh;
   }
-  .cart-row{
-    grid-template-columns: 140px 1fr 56px 90px auto;
-    gap: 8px;
+
+  .cart-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: repeat(4, auto);
+    gap: 8px 16px;
     align-items: center;
-    padding: 10px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
   }
-  .cart-row img{
-    width: 120px;
-    height: 120px;
+
+  .cart-row img {
+    grid-column: 1;
+    grid-row: 1 / 5;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .cart-row .name {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .cart-row .price {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .cart-row input {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 0;
+    justify-self: center;
+  }
+
+  .cart-row .remove {
+    grid-column: 2;
+    grid-row: 4;
+    justify-self: center;
   }
 }

@@ -25,7 +25,7 @@ function updateCart() {
     cartItemsEl.innerHTML += `
       <div class="cart-row">
         <img src="${item.img}" alt="">
-        <div>${item.name}</div>
+        <div class="name">${item.name}</div>
         <input type="number" value="${item.qty}" min="1" data-index="${index}">
         <div class="price">${lineSum} ₽</div>
         <button data-index="${index}" class="remove">Удалить</button>
