@@ -172,7 +172,6 @@ h1, h2, p { text-align: center; }
   width: 50px;
   margin-top: 10px;
   text-align: center;
-  font-size: 16px;
 }
 
 .cart-row:last-child{
@@ -221,7 +220,7 @@ h1, h2, p { text-align: center; }
     top: 5px; right: 15px;
   }
 
-  .modal-content button:hover {
+  .modal-content button:focus {
     background :#000;
   }
 
@@ -290,7 +289,7 @@ h1, h2, p { text-align: center; }
     top: 5px; right: 15px;
   }
 
-  .modal-content button:hover {
+  .modal-content button:focus {
     background :#000;
   }
 
