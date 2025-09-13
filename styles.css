@@ -220,10 +220,6 @@ h1, h2, p { text-align: center; }
     top: 5px; right: 15px;
   }
 
-  .modal-content button:focus {
-    background :#000;
-  }
-
   .modal-content {
     width: 80%;
     padding: 12px;
@@ -287,10 +283,6 @@ h1, h2, p { text-align: center; }
   .close {
     position: absolute;
     top: 5px; right: 15px;
-  }
-
-  .modal-content button:focus {
-    background :#000;
   }
 
   .modal-content{
