@@ -36,7 +36,6 @@ function updateCart() {
   cartTotalEl.textContent = total + ' ₽';
   localStorage.setItem('cart', JSON.stringify(cart));
   setSubmitState();
-  resetProductButtons();
 }
 
 function validateForm() {
@@ -56,28 +55,26 @@ function validateForm() {
 }
 
 function resetProductButtons() {
-  document.querySelectorAll('.product').forEach(card => {
-    const button = card.querySelector('button');
-    const name = card.querySelector('h3').textContent;
-    const price = Number(card.dataset.price);
-    const img = card.querySelector('img').src;
-    const inCart = cart.some(item => item.name === name);
+  document.querySelectorAll('.product button').forEach(button => {
+    button.textContent = "Добавить в корзину";
+    button.onclick = () => {
+      const product = button.closest('.product');
+      const name = product.querySelector('h3').textContent;
+      const price = Number(product.dataset.price);
+      const img = product.querySelector('img').src;
 
-    if (inCart) {
+      let found = cart.find(item => item.name === name);
+      if (!found) cart.push({ name, price, qty: 1, img });
+      else found.qty += 1;
+
+      updateCart();
+
       button.textContent = "Перейти в корзину";
       button.onclick = () => {
         modal.style.display = "flex";
         setSubmitState();
       };
-    } else {
-      button.textContent = "Добавить в корзину";
-      button.onclick = () => {
-        const found = cart.find(item => item.name === name);
-        if (!found) cart.push({ name, price, qty: 1, img });
-        else found.qty += 1;
-        updateCart();
-      };
-    }
+    };
   });
 }
 
