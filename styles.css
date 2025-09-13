@@ -172,6 +172,7 @@ h1, h2, p { text-align: center; }
   width: 50px;
   margin-top: 10px;
   text-align: center;
+  font-size: 16px;
 }
 
 .cart-row:last-child{
@@ -179,26 +180,26 @@ h1, h2, p { text-align: center; }
 }
 
 .modal-content input{
-  width:300px;
-  height:32px;
-  padding:0 6px;
-  font-size:14px;
-  border:1px solid #cfd3d8;
-  border-radius:6px;
-  text-align:center;
-  margin-bottom:10px;
+  width: 300px;
+  height: 32px;
+  padding: 0 6px;
+  font-size: 16px;
+  border: 1px solid #cfd3d8;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .modal-content button{
   background: #000;
   color: white;
-  width:150px;
-  height:32px;
-  padding:0 6px;
-  font-size:14px;
-  border:1px solid #cfd3d8;
-  border-radius:6px;
-  text-align:center;
+  width: 150px;
+  height: 32px;
+  padding: 0 6px;
+  font-size: 14px;
+  border: 1px solid #cfd3d8;
+  border-radius: 6px;
+  text-align: center;
   cursor: pointer;
 }
 
@@ -210,14 +211,21 @@ h1, h2, p { text-align: center; }
   .catalog {
     grid-template-columns: 1fr;
   }
+
   header h1 {
     font-size: 2.0em;
   }
+
+  .modal-content button:hover {
+    background :#000;
+  }
+
   .modal-content {
     width: 80%;
     padding: 12px;
     max-height:82vh;
   }
+
   .cart-row {
     display: grid;
     grid-template-columns: 120px 1fr;
@@ -270,6 +278,10 @@ h1, h2, p { text-align: center; }
 
   header h1 {
     font-size: 1.6em;
+  }
+
+  .modal-content button:hover {
+    background :#000;
   }
 
   .modal-content{
