@@ -5,10 +5,10 @@ const cartItemsEl = document.getElementById('cartItems');
 const cartTotalEl = document.getElementById('cartTotal');
 const form = document.querySelector('#cartModal form');
 const submitBtn = form.querySelector('button[type="submit"]');
-const fName   = form.querySelector('input[placeholder="Имя"]');
-const fLast   = form.querySelector('input[placeholder="Фамилия"]');
-const fAddr   = form.querySelector('input[placeholder="Адрес доставки"]');
-const fPhone  = form.querySelector('input[placeholder="Телефон"]');
+const fName = form.querySelector('input[placeholder="Имя"]');
+const fLast = form.querySelector('input[placeholder="Фамилия"]');
+const fAddr = form.querySelector('input[placeholder="Адрес доставки"]');
+const fPhone = form.querySelector('input[placeholder="Телефон"]');
 
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -59,9 +59,9 @@ function resetProductButtons() {
     button.textContent = "Добавить в корзину";
     button.onclick = () => {
       const product = button.closest('.product');
-      const name    = product.querySelector('h3').textContent;
-      const price   = Number(product.dataset.price);
-      const img     = product.querySelector('img').src;
+      const name = product.querySelector('h3').textContent;
+      const price = Number(product.dataset.price);
+      const img = product.querySelector('img').src;
 
       let found = cart.find(item => item.name === name);
 
