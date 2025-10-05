@@ -8,15 +8,11 @@ body {
 h1 {
   margin: 0 0 12px;
 }
-div {
-  margin-bottom: 12px;
-}
 input[type="text"] {
   padding: 8px 10px;
 }
 button {
   padding: 8px 12px;
-  margin-left: 6px;
 }
 ul {
   padding: 0;
@@ -30,4 +26,36 @@ li {
   padding: 8px 10px;
   border: 1px solid #ddd;
   margin-bottom: 6px;
+}
+.body {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex: 1;
+}
+.done .title {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.check {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #6b7280;
+  background: #fff;
+  padding: 0;
+  cursor: pointer;
+}
+.done .check {
+  background: #000000;
+  border-color: #000000;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

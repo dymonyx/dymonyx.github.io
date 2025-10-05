@@ -21,13 +21,20 @@ function formatDate(iso) {
 
 function addItem(text, due) {
   const li = document.createElement("li");
+
+  const check = document.createElement("button");
+  check.type = "button";
+  check.className = "check";
+
   const title = document.createElement("span");
+  title.className = "title";
   title.textContent = text;
 
   const meta = document.createElement("small");
   meta.textContent = due ? `Дата: ${formatDate(due)}` : "Без даты";
 
   const body = document.createElement("div");
+  body.className = "body";
   body.append(title, document.createTextNode(" "), meta);
 
   const editBtn = document.createElement("button");
@@ -35,6 +42,10 @@ function addItem(text, due) {
 
   const delBtn = document.createElement("button");
   delBtn.textContent = "Удалить";
+
+  check.addEventListener("click", () => {
+    li.classList.toggle("done");
+  });
 
   editBtn.addEventListener("click", () => {
     if (body.querySelector("input")) return;
@@ -82,9 +93,10 @@ function addItem(text, due) {
   });
 
   const actions = document.createElement("div");
+  actions.className = "actions";
   actions.append(editBtn, delBtn);
 
-  li.append(body, actions);
+  li.append(check, body, actions);
   list.append(li);
 }
 
@@ -108,6 +120,7 @@ addBtn.addEventListener("click", () => {
 });
 
 const controls = document.createElement("div");
+controls.className = "controls";
 controls.append(input, dueInput, addBtn);
 
 document.body.append(controls, list);
