@@ -77,7 +77,16 @@ function applyFilter() {
   });
 }
 
-function addItem(text, due) {
+function saveState() {
+  const items = [...list.children].map((li) => ({
+    title: li.querySelector(".title").textContent,
+    due: li.dataset.due || "",
+    done: li.classList.contains("done"),
+  }));
+  localStorage.setItem("to-do-app", JSON.stringify(items));
+}
+
+function createItem(text, due, done = false) {
   const li = document.createElement("li");
   li.dataset.due = due || "";
 
@@ -106,6 +115,7 @@ function addItem(text, due) {
   check.addEventListener("click", () => {
     li.classList.toggle("done");
     applyFilter();
+    saveState();
   });
 
   editBtn.addEventListener("click", () => {
@@ -141,6 +151,7 @@ function addItem(text, due) {
       body.replaceChildren(title, meta);
       if (currentSort !== "none") applySort();
       applyFilter();
+      saveState();
     });
 
     cancelBtn.addEventListener("click", () => {
@@ -153,14 +164,21 @@ function addItem(text, due) {
 
   delBtn.addEventListener("click", () => {
     li.remove();
+    saveState();
   });
 
   const actions = document.createElement("div");
   actions.className = "actions";
   actions.append(editBtn, delBtn);
 
-  li.append(check, body, actions);
+  if (done) li.classList.add("done");
 
+  li.append(check, body, actions);
+  return li;
+}
+
+function addItem(text, due) {
+  const li = createItem(text, due, false);
   if (currentSort === "none") {
     list.prepend(li);
   } else {
@@ -168,6 +186,21 @@ function addItem(text, due) {
     applySort();
   }
   applyFilter();
+  saveState();
+}
+
+function loadState() {
+  const raw = localStorage.getItem("to-do-app");
+  if (!raw) return;
+  try {
+    const items = JSON.parse(raw);
+    items.forEach(({ title, due, done }) => {
+      const li = createItem(title, due, done);
+      list.append(li);
+    });
+    applySort();
+    applyFilter();
+  } catch {}
 }
 
 addBtn.addEventListener("click", () => {
@@ -193,6 +226,7 @@ sortSelect.addEventListener("change", () => {
   currentSort = sortSelect.value;
   if (currentSort !== "none") applySort();
   applyFilter();
+  saveState();
 });
 
 filterSelect.addEventListener("change", () => {
@@ -210,3 +244,5 @@ controls.className = "controls";
 controls.append(input, dueInput, addBtn, sortSelect, filterSelect, searchInput);
 
 document.body.append(controls, list);
+
+loadState();
