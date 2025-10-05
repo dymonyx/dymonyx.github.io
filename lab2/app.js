@@ -86,6 +86,43 @@ function saveState() {
   localStorage.setItem("to-do-app", JSON.stringify(items));
 }
 
+let dragging = null;
+
+function makeDraggable(li) {
+  li.draggable = currentSort === "none";
+  li.addEventListener("dragstart", (e) => {
+    if (currentSort !== "none") return;
+    dragging = li;
+    e.dataTransfer.effectAllowed = "move";
+    li.classList.add("dragging");
+  });
+  li.addEventListener("dragover", (e) => {
+    if (currentSort !== "none") return;
+    if (!dragging || dragging === li) return;
+    e.preventDefault();
+    const position = li.getBoundingClientRect();
+    const after = e.clientY > position.top + position.height / 2;
+    if (after) li.after(dragging);
+    else li.before(dragging);
+  });
+  li.addEventListener("drop", (e) => {
+    if (currentSort !== "none") return;
+    e.preventDefault();
+    saveState();
+  });
+  li.addEventListener("dragend", () => {
+    li.classList.remove("dragging");
+    dragging = null;
+    saveState();
+  });
+}
+
+function updateDraggableState() {
+  [...list.children].forEach((li) => {
+    li.draggable = currentSort === "none";
+  });
+}
+
 function createItem(text, due, done = false) {
   const li = document.createElement("li");
   li.dataset.due = due || "";
@@ -174,6 +211,7 @@ function createItem(text, due, done = false) {
   if (done) li.classList.add("done");
 
   li.append(check, body, actions);
+  makeDraggable(li);
   return li;
 }
 
@@ -226,6 +264,7 @@ sortSelect.addEventListener("change", () => {
   currentSort = sortSelect.value;
   if (currentSort !== "none") applySort();
   applyFilter();
+  updateDraggableState();
   saveState();
 });
 
@@ -246,3 +285,4 @@ controls.append(input, dueInput, addBtn, sortSelect, filterSelect, searchInput);
 document.body.append(controls, list);
 
 loadState();
+updateDraggableState();
