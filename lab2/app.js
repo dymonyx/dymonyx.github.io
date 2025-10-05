@@ -6,44 +6,108 @@ const input = document.createElement("input");
 input.type = "text";
 input.placeholder = "Новая задача...";
 
+const dueInput = document.createElement("input");
+dueInput.type = "date";
+
 const addBtn = document.createElement("button");
 addBtn.textContent = "Добавить";
 const list = document.createElement("ul");
 
-function addItem(text) {
+function formatDate(iso) {
+  if (!iso) return "Без даты";
+  const [y, m, d] = iso.split("-");
+  return `${d}.${m}.${y}`;
+}
+
+function addItem(text, due) {
   const li = document.createElement("li");
   const title = document.createElement("span");
   title.textContent = text;
 
+  const meta = document.createElement("small");
+  meta.textContent = due ? `Дата: ${formatDate(due)}` : "Без даты";
+
+  const body = document.createElement("div");
+  body.append(title, document.createTextNode(" "), meta);
+
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Изменить";
+
   const delBtn = document.createElement("button");
   delBtn.textContent = "Удалить";
+
+  editBtn.addEventListener("click", () => {
+    if (body.querySelector("input")) return;
+
+    const tIn = document.createElement("input");
+    tIn.type = "text";
+    tIn.value = title.textContent;
+
+    const dIn = document.createElement("input");
+    dIn.type = "date";
+    dIn.value = due || "";
+
+    const saveBtn = document.createElement("button");
+    saveBtn.textContent = "Сохранить";
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.textContent = "Отмена";
+
+    const onKey = (e) => {
+      if (e.key === "Enter") saveBtn.click();
+    };
+    tIn.addEventListener("keydown", onKey);
+    dIn.addEventListener("keydown", onKey);
+
+    saveBtn.addEventListener("click", () => {
+      const newTitle = tIn.value.trim();
+      const newDue = dIn.value || null;
+      if (!newTitle) return;
+      title.textContent = newTitle;
+      meta.textContent = newDue ? `Дата: ${formatDate(newDue)}` : "Без даты";
+      due = newDue;
+      body.replaceChildren(title, document.createTextNode(" "), meta);
+    });
+
+    cancelBtn.addEventListener("click", () => {
+      body.replaceChildren(title, document.createTextNode(" "), meta);
+    });
+
+    body.replaceChildren(tIn, dIn, saveBtn, cancelBtn);
+    tIn.focus();
+  });
+
   delBtn.addEventListener("click", () => {
     li.remove();
   });
 
   const actions = document.createElement("div");
-  actions.append(delBtn);
+  actions.append(editBtn, delBtn);
 
-  li.append(title, actions);
+  li.append(body, actions);
   list.append(li);
 }
 
 addBtn.addEventListener("click", () => {
   const text = input.value.trim();
+  const due = dueInput.value || null;
   if (text === "") {
     input.focus();
     return;
   }
-  addItem(text);
+  addItem(text, due);
   input.value = "";
+  dueInput.value = "";
   input.focus();
 });
 
-input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") addBtn.click();
+[input, dueInput].forEach((el) => {
+  el.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") addBtn.click();
+  });
 });
 
 const controls = document.createElement("div");
-controls.append(input, addBtn);
+controls.append(input, dueInput, addBtn);
 
 document.body.append(controls, list);
