@@ -13,20 +13,28 @@ const addBtn = document.createElement("button");
 addBtn.textContent = "Добавить";
 
 const sortSelect = document.createElement("select");
-
 const optNone = document.createElement("option");
 optNone.value = "none";
 optNone.textContent = "Без сортировки";
-
 const optAsc = document.createElement("option");
 optAsc.value = "date_asc";
 optAsc.textContent = "Дата ↑";
-
 const optDesc = document.createElement("option");
 optDesc.value = "date_desc";
 optDesc.textContent = "Дата ↓";
-
 sortSelect.append(optNone, optAsc, optDesc);
+
+const filterSelect = document.createElement("select");
+const fAll = document.createElement("option");
+fAll.value = "all";
+fAll.textContent = "Все";
+const fActive = document.createElement("option");
+fActive.value = "to-do";
+fActive.textContent = "To do";
+const fDone = document.createElement("option");
+fDone.value = "done";
+fDone.textContent = "Завершённые";
+filterSelect.append(fAll, fActive, fDone);
 
 const list = document.createElement("ul");
 
@@ -37,12 +45,11 @@ function formatDate(iso) {
 }
 
 let currentSort = "none";
+let currentFilter = "all";
 
 function applySort() {
   if (currentSort === "none") return;
-
   const asc = currentSort === "date_asc";
-
   [...list.children]
     .sort((a, b) => {
       const ad = a.dataset.due || (asc ? "9999-12-31" : "0000-01-01");
@@ -50,6 +57,15 @@ function applySort() {
       return asc ? ad.localeCompare(bd) : bd.localeCompare(ad);
     })
     .forEach((li) => list.append(li));
+}
+
+function applyFilter() {
+  [...list.children].forEach((li) => {
+    const done = li.classList.contains("done");
+    if (currentFilter === "all") li.hidden = false;
+    else if (currentFilter === "to-do") li.hidden = done;
+    else if (currentFilter === "done") li.hidden = !done;
+  });
 }
 
 function addItem(text, due) {
@@ -80,6 +96,7 @@ function addItem(text, due) {
 
   check.addEventListener("click", () => {
     li.classList.toggle("done");
+    applyFilter();
   });
 
   editBtn.addEventListener("click", () => {
@@ -110,10 +127,11 @@ function addItem(text, due) {
       const newDue = dIn.value || "";
       if (!newTitle) return;
       title.textContent = newTitle;
-      meta.textContent = newDue ? `Дата: ${formatDate(newDue)}` : "Без даты";
       li.dataset.due = newDue;
+      meta.textContent = newDue ? `Дата: ${formatDate(newDue)}` : "Без даты";
       body.replaceChildren(title, meta);
       if (currentSort !== "none") applySort();
+      applyFilter();
     });
 
     cancelBtn.addEventListener("click", () => {
@@ -140,6 +158,7 @@ function addItem(text, due) {
     list.append(li);
     applySort();
   }
+  applyFilter();
 }
 
 addBtn.addEventListener("click", () => {
@@ -163,12 +182,17 @@ addBtn.addEventListener("click", () => {
 
 sortSelect.addEventListener("change", () => {
   currentSort = sortSelect.value;
-  if (currentSort === "none") return;
-  applySort();
+  if (currentSort !== "none") applySort();
+  applyFilter();
+});
+
+filterSelect.addEventListener("change", () => {
+  currentFilter = filterSelect.value;
+  applyFilter();
 });
 
 const controls = document.createElement("div");
 controls.className = "controls";
-controls.append(input, dueInput, addBtn, sortSelect);
+controls.append(input, dueInput, addBtn, sortSelect, filterSelect);
 
 document.body.append(controls, list);
