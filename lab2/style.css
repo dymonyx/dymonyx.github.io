@@ -1,0 +1,33 @@
+body {
+  font:
+    16px/1.4 system-ui,
+    helvetica,
+    sans-serif;
+  margin: 24px;
+}
+h1 {
+  margin: 0 0 12px;
+}
+div {
+  margin-bottom: 12px;
+}
+input[type="text"] {
+  padding: 8px 10px;
+}
+button {
+  padding: 8px 12px;
+  margin-left: 6px;
+}
+ul {
+  padding: 0;
+  margin: 12px 0 0;
+}
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 6px;
+}
