@@ -36,6 +36,10 @@ fDone.value = "done";
 fDone.textContent = "Завершённые";
 filterSelect.append(fAll, fActive, fDone);
 
+const searchInput = document.createElement("input");
+searchInput.type = "text";
+searchInput.placeholder = "Поиск по названию...";
+
 const list = document.createElement("ul");
 
 function formatDate(iso) {
@@ -46,6 +50,7 @@ function formatDate(iso) {
 
 let currentSort = "none";
 let currentFilter = "all";
+let currentQuery = "";
 
 function applySort() {
   if (currentSort === "none") return;
@@ -60,11 +65,15 @@ function applySort() {
 }
 
 function applyFilter() {
+  const q = currentQuery.trim().toLowerCase();
   [...list.children].forEach((li) => {
     const done = li.classList.contains("done");
-    if (currentFilter === "all") li.hidden = false;
-    else if (currentFilter === "to-do") li.hidden = done;
-    else if (currentFilter === "done") li.hidden = !done;
+    const titleEl = li.querySelector(".title");
+    const matches = !q || titleEl.textContent.toLowerCase().includes(q);
+    let visible = true;
+    if (currentFilter === "to-do") visible = !done;
+    else if (currentFilter === "done") visible = done;
+    li.hidden = !(visible && matches);
   });
 }
 
@@ -191,8 +200,13 @@ filterSelect.addEventListener("change", () => {
   applyFilter();
 });
 
+searchInput.addEventListener("input", () => {
+  currentQuery = searchInput.value;
+  applyFilter();
+});
+
 const controls = document.createElement("div");
 controls.className = "controls";
-controls.append(input, dueInput, addBtn, sortSelect, filterSelect);
+controls.append(input, dueInput, addBtn, sortSelect, filterSelect, searchInput);
 
 document.body.append(controls, list);
