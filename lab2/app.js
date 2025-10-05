@@ -97,7 +97,7 @@ function addItem(text, due) {
   actions.append(editBtn, delBtn);
 
   li.append(check, body, actions);
-  list.append(li);
+  list.prepend(li);
 }
 
 addBtn.addEventListener("click", () => {
