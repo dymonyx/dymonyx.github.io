@@ -35,7 +35,6 @@ const fDone = document.createElement("option");
 fDone.value = "done";
 fDone.textContent = "Завершённые";
 filterSelect.append(fAll, fActive, fDone);
-
 const searchInput = document.createElement("input");
 searchInput.type = "text";
 searchInput.placeholder = "Поиск по названию...";
@@ -204,7 +203,7 @@ function createItem(text, due, done = false) {
     saveState();
   });
 
-  const actions = document.createElement("div");
+  const actions = document.createElement("nav");
   actions.className = "actions";
   actions.append(editBtn, delBtn);
 
@@ -278,7 +277,7 @@ searchInput.addEventListener("input", () => {
   applyFilter();
 });
 
-const controls = document.createElement("div");
+const controls = document.createElement("nav");
 controls.className = "controls";
 controls.append(input, dueInput, addBtn, sortSelect, filterSelect, searchInput);
 
