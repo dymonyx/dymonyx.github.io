@@ -1,3 +1,7 @@
+function isTouchDevice() {
+  return "ontouchstart" in window || navigator.maxTouchPoints > 0;
+}
+
 const h1 = document.createElement("h1");
 h1.textContent = "Just do it.";
 document.body.append(h1);
@@ -115,6 +119,61 @@ function makeDraggable(li) {
     dragging = null;
     saveState();
   });
+  if (!isTouchDevice()) return;
+
+  let tDragging = null;
+  let moved = false;
+
+  const isInteractive = (el) =>
+    el.closest && el.closest("button, input, select, a");
+
+  li.addEventListener(
+    "touchstart",
+    (e) => {
+      if (currentSort !== "none") return;
+      if (isInteractive(e.target)) return;
+      tDragging = li;
+      moved = false;
+      li.classList.add("dragging");
+    },
+    { passive: true },
+  );
+
+  li.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!tDragging) return;
+      moved = true;
+      e.preventDefault();
+      const y = e.touches[0].clientY;
+
+      const siblings = [...list.children].filter(
+        (n) => n !== tDragging && !n.hidden,
+      );
+      let target = null;
+      for (const s of siblings) {
+        const r = s.getBoundingClientRect();
+        if (y < r.top + r.height / 2) {
+          target = s;
+          break;
+        }
+      }
+      target
+        ? list.insertBefore(tDragging, target)
+        : list.appendChild(tDragging);
+    },
+    { passive: false },
+  );
+
+  const endTouch = () => {
+    if (!tDragging) return;
+    li.classList.remove("dragging");
+    tDragging = null;
+    saveState();
+    moved = false;
+  };
+  li.addEventListener("touchend", endTouch, { passive: true });
+  li.addEventListener("touchcancel", endTouch, { passive: true });
 }
 
 function updateDraggableState() {

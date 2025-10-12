@@ -171,3 +171,13 @@ li[hidden] {
     appearance: menulist;
   }
 }
+
+@media (pointer: coarse) {
+  li {
+    touch-action: none;
+    user-select: none;
+  }
+  li.dragging {
+    opacity: 0.6;
+  }
+}
