@@ -146,3 +146,28 @@ li[hidden] {
     min-width: 0;
   }
 }
+
+@media (max-width: 600px) {
+  input,
+  select,
+  button,
+  textarea {
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    box-shadow: none;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="search"],
+  select,
+  button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  select {
+    -webkit-appearance: menulist;
+    appearance: menulist;
+  }
+}

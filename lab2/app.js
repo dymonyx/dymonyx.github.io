@@ -6,12 +6,13 @@ const input = document.createElement("input");
 input.type = "text";
 input.placeholder = "Новая задача...";
 
+const todayISO = () => new Date().toISOString().split("T")[0];
 const dueInput = document.createElement("input");
 dueInput.type = "date";
+dueInput.value = todayISO();
 
 const addBtn = document.createElement("button");
 addBtn.textContent = "Добавить";
-
 const sortSelect = document.createElement("select");
 const optNone = document.createElement("option");
 optNone.value = "none";
@@ -249,7 +250,7 @@ addBtn.addEventListener("click", () => {
   }
   addItem(text, due);
   input.value = "";
-  dueInput.value = "";
+  dueInput.value = todayISO();
   input.focus();
 });
 
