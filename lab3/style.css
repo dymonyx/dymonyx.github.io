@@ -1,0 +1,389 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font: 16px/1.4 system-ui, helvetica, sans-serif;
+  margin: 0;
+  padding: 0 16px;
+  background: #f5f5f5;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  width: 100%;
+  max-width: 600px;
+}
+
+.app-inner {
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.scores {
+  display: flex;
+  gap: 8px;
+}
+
+.score-box {
+  min-width: 86px;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.score-box-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
+.score-box-value {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.header-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.header-controls button {
+  flex: 1 1 0;
+  height: 42px;
+  padding: 10px 14px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+.header-controls button.return {
+  background: #898888;
+  color: #ffffff;
+  border-color: #e5e7eb;
+}
+
+.header-controls button.secondary {
+  background: #fff;
+  color: #000;
+  border-color: #e5e7eb;
+}
+
+.header-controls button:hover {
+  filter: brightness(0.96);
+}
+.header-controls button:active {
+  filter: brightness(0.92);
+}
+
+.board-wrapper {
+  margin-top: 16px;
+}
+
+.board {
+  position: relative;
+  background: #111;
+  border: 1px solid #000;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.cell {
+  background: #e5e7eb;
+  border: 1px solid #d4d4d4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 32px;
+  color: #111;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.cell[data-value="0"] {
+  background: #e5e7eb;
+  color: transparent;
+}
+
+.cell[data-value="2"] {
+  background: #fee2e2;
+  color: #7f1d1d;
+}
+.cell[data-value="4"] {
+  background: #ffedd5;
+  color: #7c2d12;
+}
+.cell[data-value="8"] {
+  background: #fef9c3;
+  color: #713f12;
+}
+.cell[data-value="16"] {
+  background: #dcfce7;
+  color: #14532d;
+}
+.cell[data-value="32"] {
+  background: #dbeafe;
+  color: #1e3a8a;
+}
+.cell[data-value="64"] {
+  background: #e0e7ff;
+  color: #312e81;
+}
+.cell[data-value="128"] {
+  background: #f5d0fe;
+  color: #581c87;
+}
+.cell[data-value="256"] {
+  background: #fae8ff;
+  color: #831843;
+}
+.cell[data-value="512"] {
+  background: #fee2e2;
+  color: #7f1d1d;
+}
+.cell[data-value="1024"] {
+  background: #fed7aa;
+  color: #7c2d12;
+}
+.cell[data-value="2048"] {
+  background: #f9c416;
+  color: #c59b11;
+}
+.cell[data-value="4096"] {
+  background: #f97316;
+  color: #be5911;
+}
+.cell[data-value="8192"] {
+  background: #f94f16;
+  color: #9b310e;
+}
+.cell[data-value="16384"] {
+  background: #f91616;
+  color: #8d0b0b;
+}
+
+.cell-new {
+  animation: pop 0.2s ease-out;
+}
+
+.cell-merged {
+  animation: merge-pop 0.25s ease-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes merge-pop {
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.touch-controls {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 8px;
+}
+
+.touch-controls button {
+  padding: 8px 0;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.touch-controls button.center-placeholder {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.touch-controls button:active {
+  filter: brightness(0.92);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #00000066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 10;
+}
+
+.overlay-inner {
+  background: #ffffff;
+  padding: 16px;
+  max-width: 420px;
+  width: 100%;
+  border: 1px solid #000;
+}
+
+.overlay-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.overlay-message {
+  margin-bottom: 12px;
+  color: #4b5563;
+}
+
+.overlay-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.overlay-row label {
+  font-size: 14px;
+}
+
+.overlay-row input[type="text"] {
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+}
+
+.overlay-row input[type="text"]:focus {
+  border-color: #000;
+}
+
+.overlay-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.overlay-actions button {
+  flex: 1 1 120px;
+  height: 38px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.overlay-actions button.secondary {
+  background: #fff;
+  color: #000;
+  border-color: #e5e7eb;
+}
+
+.overlay-actions button:hover {
+  filter: brightness(0.96);
+}
+.overlay-actions button:active {
+  filter: brightness(0.92);
+}
+
+.leader-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.leader-table th,
+.leader-table td {
+  padding: 6px 4px;
+  text-align: left;
+}
+
+.leader-table thead {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.leader-table tbody tr:nth-child(odd) {
+  background: #f9fafb;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px;
+  }
+
+  .app-inner {
+    padding: 16px;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .scores {
+    align-self: stretch;
+    justify-content: flex-start;
+  }
+}
+
+@media (pointer: fine) {
+  .touch-controls {
+    display: none;
+  }
+}
