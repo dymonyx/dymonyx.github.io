@@ -358,47 +358,79 @@ input {
   background: #f9fafb;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1000px) {
   body {
-    padding: 16px;
+    padding: 8px;
+    font-size: 14px;
   }
 
   .app-inner {
-    padding: 16px;
-  }
-
-  .header-top {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .title {
-    font-size: 22px;
+    padding: 10px;
   }
 
   .scores {
-    align-self: stretch;
-    justify-content: flex-start;
+    order: 1;
+  }
+
+  .title {
+    order: 2;
+    font-size: 20px;
+  }
+
+  .score-box {
+    min-width: 72px;
+    padding: 6px 8px;
+  }
+
+  .score-box-value {
+    font-size: 18px;
   }
 
   .header-controls {
     flex-direction: column;
+    gap: 4px;
   }
 
   .header-controls button {
-    height: auto;
-    padding: 10px 12px;
-    white-space: normal;
+    height: 34px;
+    padding: 6px 8px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .overlay-inner {
+    padding: 12px;
+  }
+
+  .overlay-message {
+    font-size: 14px;
   }
 
   .overlay-actions {
     flex-direction: column;
+    gap: 4px;
   }
 
   .overlay-actions button {
-    height: auto;
-    padding: 8px 10px;
-    white-space: normal;
+    flex: 0 0 auto;
+    height: 34px;
+    padding: 4px 8px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .board {
+    padding: 6px;
+    gap: 5px;
+  }
+
+  .cell {
+    font-size: 22px;
+  }
+
+  .touch-controls button {
+    font-size: 16px;
+    padding: 6px 0;
   }
 }
 
