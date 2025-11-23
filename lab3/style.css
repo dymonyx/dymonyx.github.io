@@ -380,6 +380,26 @@ input {
     align-self: stretch;
     justify-content: flex-start;
   }
+
+  .header-controls {
+    flex-direction: column;
+  }
+
+  .header-controls button {
+    height: auto;
+    padding: 10px 12px;
+    white-space: normal;
+  }
+
+  .overlay-actions {
+    flex-direction: column;
+  }
+
+  .overlay-actions button {
+    height: auto;
+    padding: 8px 10px;
+    white-space: normal;
+  }
 }
 
 @media (pointer: fine) {
