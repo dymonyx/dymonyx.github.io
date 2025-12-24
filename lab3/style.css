@@ -133,7 +133,7 @@ input {
 
 .cell {
   background: #e5e7eb;
-  border: 1px solid #d4d4d4;
+  border: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,6 +153,7 @@ input {
   opacity: 1;
   will-change: transform, opacity;
   transition: transform 140ms ease-in-out, opacity 140ms ease-in-out;
+  overflow: hidden;
 }
 
 .tile.removing {
@@ -166,9 +167,8 @@ input {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  border: 1px solid #d4d4d4;
-  border-radius: 6px;
-  box-sizing: border-box;
+  border: 0;
+  border-radius: 0;
 }
 
 .tile.new .tile-inner {
