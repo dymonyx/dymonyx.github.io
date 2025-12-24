@@ -1,6 +1,6 @@
 (function () {
   const STORAGE_KEY = "weather-app";
-  const REQUEST_TIMEOUT_MS = 1000;
+  const REQUEST_TIMEOUT_MS = 5000;
 
   function safeJsonParse(raw, fallback) {
     try {

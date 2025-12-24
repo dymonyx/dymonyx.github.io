@@ -121,6 +121,18 @@ input {
   margin: 14px 0 10px;
 }
 
+@media (min-width: 860px) {
+  .tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
 .tab {
   width: 100%;
   min-height: 56px;
