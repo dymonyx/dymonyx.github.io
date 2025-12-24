@@ -1,6 +1,6 @@
 (function () {
   const STORAGE_KEY = "weather-app";
-  const REQUEST_TIMEOUT_MS = 12000;
+  const REQUEST_TIMEOUT_MS = 1000;
 
   function safeJsonParse(raw, fallback) {
     try {
@@ -553,32 +553,6 @@
       renderPanel();
       refetchAll();
     });
-
-    const makeBaseBtn = createEl("button", "secondary", "Сделать основным");
-    makeBaseBtn.type = "button";
-    makeBaseBtn.disabled = ap.id === "base";
-
-    makeBaseBtn.addEventListener("click", function () {
-      if (ap.id === "base") return;
-      const c = state.extras.find(function (x) {
-        return x.id === ap.id;
-      });
-      if (!c) return;
-
-      state.base = { mode: "city", label: c.label, lat: c.lat, lon: c.lon };
-      state.extras = state.extras.filter(function (x) {
-        return x.id !== ap.id;
-      });
-      state.activeId = "base";
-      saveState();
-      updateMetaUI();
-      renderTabs();
-      renderPanel();
-      refetchAll();
-    });
-
-    actions.append(removeBtn, makeBaseBtn);
-    panel.append(actions);
   }
 
   let overlayMode = "add-extra";
