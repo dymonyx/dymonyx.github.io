@@ -1,0 +1,434 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font: 16px/1.4 system-ui, helvetica, sans-serif;
+  margin: 0;
+  padding: 0 16px;
+  background: #f5f5f5;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  width: 100%;
+  max-width: 760px;
+}
+
+.app-inner {
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.meta {
+  display: flex;
+  gap: 8px;
+}
+
+.meta-box {
+  min-width: 120px;
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.meta-box-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
+.meta-box-value {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.header-controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.header-controls button {
+  flex: 1 1 0;
+  height: 42px;
+  padding: 10px 14px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.header-controls button.secondary {
+  background: #fff;
+  color: #000;
+  border-color: #e5e7eb;
+}
+
+.header-controls button.return {
+  background: #898888;
+  color: #ffffff;
+  border-color: #e5e7eb;
+}
+
+.header-controls button:hover {
+  filter: brightness(0.96);
+}
+.header-controls button:active {
+  filter: brightness(0.92);
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 14px 0 10px;
+}
+
+@media (min-width: 860px) {
+  .tabs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tab {
+  width: 100%;
+  min-height: 56px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 8px 10px;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.tab.active {
+  border-color: #000;
+}
+
+.tab > div {
+  font-weight: 600;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.tab small {
+  display: block;
+  color: #6b7280;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.panel {
+  border: 1px solid #e5e7eb;
+  padding: 14px;
+  background: #fff;
+}
+
+.panel-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.panel-title h2 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: 800;
+  word-break: break-word;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 3px 8px;
+  border: 1px solid #e5e7eb;
+  color: #111;
+  background: #f9fafb;
+  white-space: nowrap;
+}
+
+.state {
+  color: #4b5563;
+  padding: 0;
+  margin: 0 0 12px;
+}
+
+.state.error {
+  color: #991b1b;
+}
+
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.day {
+  border: 1px solid #e5e7eb;
+  padding: 10px;
+  background: #f9fafb;
+}
+
+.day-title {
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.day-sub {
+  color: #6b7280;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 12px;
+  font-size: 14px;
+  align-items: baseline;
+}
+
+.kv div:nth-child(odd) {
+  color: #4b5563;
+}
+
+.kv div:nth-child(even) {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.actions-row {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.actions-row button {
+  height: 38px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 12px;
+}
+
+.actions-row button.secondary {
+  background: #fff;
+  color: #000;
+  border-color: #e5e7eb;
+}
+
+.actions-row button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* === overlay === */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #00000066;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 10;
+}
+
+.overlay-inner {
+  background: #ffffff;
+  padding: 16px;
+  max-width: 520px;
+  width: 100%;
+  border: 1px solid #000;
+}
+
+.overlay-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.overlay-message {
+  margin-bottom: 12px;
+  color: #4b5563;
+}
+
+.overlay-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.overlay-row label {
+  font-size: 14px;
+}
+
+.overlay-row input[type="text"] {
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+}
+
+.overlay-row input[type="text"]:focus {
+  border-color: #000;
+}
+
+.hint {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.field-error {
+  font-size: 12px;
+  color: #991b1b;
+  margin-top: 4px;
+  min-height: 16px;
+}
+
+.suggest {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  max-height: 220px;
+  overflow: auto;
+  z-index: 2;
+}
+
+.suggest button {
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: 0;
+  border-bottom: 1px solid #f3f4f6;
+  background: #fff;
+  cursor: pointer;
+}
+
+.suggest button:hover {
+  background: #f9fafb;
+}
+
+.overlay-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.overlay-actions button {
+  flex: 1 1 120px;
+  height: 38px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+.overlay-actions button.secondary {
+  background: #fff;
+  color: #000;
+  border-color: #e5e7eb;
+}
+
+@media (max-width: 900px) {
+  body {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .app-inner {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .header-controls {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .header-controls button {
+    height: 34px;
+    padding: 6px 8px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .forecast {
+    grid-template-columns: 1fr;
+  }
+
+  .overlay-inner {
+    padding: 12px;
+  }
+
+  .overlay-actions {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .overlay-actions button {
+    flex: 0 0 auto;
+    height: 34px;
+    padding: 4px 8px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
