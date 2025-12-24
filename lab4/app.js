@@ -366,7 +366,7 @@
   const suggest = createEl("div", "suggest");
   suggest.style.display = "none";
 
-  const hint = createEl("div", "hint", "Нужно выбрать город из подсказок.");
+  const hint = createEl("div", "hint", "");
   const fieldError = createEl("div", "field-error", "");
 
   row.append(label, input, suggest, hint, fieldError);
@@ -600,8 +600,7 @@
       cancelBtn.textContent = "Закрыть";
     } else {
       overlayTitle.textContent = "Добавить город";
-      overlayMsg.textContent =
-        "Введите город и выберите из списка. Можно добавить минимум 2 доп. города.";
+      overlayMsg.textContent = "Введите город и выберите из списка.";
       cancelBtn.textContent = "Отмена";
     }
 
